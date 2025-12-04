@@ -2,7 +2,9 @@ import React, { useEffect, useState } from 'react';
 import { fetchWithAuth } from '../api';
 
 function AdminPanel({ user }) {
+    // Stores the list of all claims fetched from the backend/database
     const [allClaims, setAllClaims] = useState([]);
+// Stores the list of all policies available for users
     const [allPolicies, setAllPolicies] = useState([]);
 
     useEffect(() => {
