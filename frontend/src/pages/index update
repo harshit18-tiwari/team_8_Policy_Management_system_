@@ -1,0 +1,25 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Policy Manager</title>
+  <!-- 
+    The <meta name="viewport"> ensures the page scales correctly on different devices.
+    The <title> sets the page title shown in browser tabs.
+  -->
+</head>
+
+<body>
+  <!-- Root div for React app -->
+  <div id="root"></div>
+
+  <!--
+    Main entry point for React application.
+    Using type="module" allows usage of ES6 imports in index.jsx.
+  -->
+  <script type="module" src="/src/index.jsx"></script>
+</body>
+
+</html>
