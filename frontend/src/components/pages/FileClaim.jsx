@@ -21,13 +21,16 @@ function FileClaim({ user, setView }) {
             alert("Please select a policy and upload evidence.");
             return;
         }
-
+// Create a new FormData object to send multipart/form data (files + text)
         const formData = new FormData();
+        // Append policy ID to form data (used to identify the claim policy)
         formData.append('policyId', policyId);
         formData.append('description', description);
+        // Append claim description entered by user
         formData.append('amount', amount);
+        // Append claim amount requested for approval
         formData.append('evidence', file);
-
+// Attach the uploaded evidence file (e.g., image, pdf)
         const res = await fetchWithAuth('/claims/file', {
             method: 'POST',
             body: formData // fetchWithAuth handles content-type for FormData
