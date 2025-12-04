@@ -2,10 +2,14 @@ import React, { useState, useEffect } from 'react';
 import { fetchWithAuth } from '../api';
 
 function FileClaim({ user, setView }) {
+    // State to store list of policies available to the user
     const [policies, setPolicies] = useState([]);
+    // State to hold the selected policy ID for filing a claim
     const [policyId, setPolicyId] = useState('');
+    // State to store the description/details of the claim
     const [description, setDescription] = useState('');
     const [amount, setAmount] = useState('');
+    // State to store uploaded evidence file (image, pdf, etc.)
     const [file, setFile] = useState(null);
 
     useEffect(() => {
