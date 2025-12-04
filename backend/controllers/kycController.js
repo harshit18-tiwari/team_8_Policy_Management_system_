@@ -58,7 +58,7 @@ exports.verifyKyc = (req, res) => {
     if (status === 'REJECTED' && !rejectionReason) {
         return res.status(400).json({ error: "Rejection reason is required" });
     }
-
+// database checked full 
     try {
         const kyc = KycModel.findById(id);
         if (!kyc) return res.status(404).json({ error: "KYC document not found" });
