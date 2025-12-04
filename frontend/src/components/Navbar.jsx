@@ -7,7 +7,10 @@ function Navbar({ user, setView, onLogout }) {
             <div className="links">
                 {user ? (
                     <>
+                        {/* Button to switch view to user dashboard */}
                         <button onClick={() => setView('dashboard')}>Dashboard</button>
+                        {/* Button to open policy purchasing page */}
+
                         <button onClick={() => setView('products')}>Buy Policy</button>
                         {['ADMIN', 'ADJUSTER', 'UNDERWRITER'].includes(user.role) && (
                             <button onClick={() => setView('admin')}>Admin Panel</button>
