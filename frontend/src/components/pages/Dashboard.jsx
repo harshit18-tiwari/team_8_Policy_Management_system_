@@ -2,14 +2,17 @@ import React, { useEffect, useState } from 'react';
 import { fetchWithAuth } from '../api';
 
 function Dashboard({ user, setView }) {
+    // State to store user's policies list
     const [policies, setPolicies] = useState([]);
+    // State to store user's submitted claims list
     const [claims, setClaims] = useState([]);
-
+// Function to refresh both policies and claims from the server
     const refreshData = async () => {
         const pRes = await fetchWithAuth('/policies/my-policies');
         setPolicies(await pRes.json());
-
+// Fetch policies belonging to the logged-in user (authenticated request)
         const cRes = await fetchWithAuth('/claims/my-claims');
+        // Fetch claims submitted by the logged-in user
         setClaims(await cRes.json());
     };
 
