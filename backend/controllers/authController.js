@@ -11,7 +11,7 @@ exports.register = (req, res) => {
     try {
         const salt = bcrypt.genSaltSync(10);
         const hashedPassword = bcrypt.hashSync(password, salt);
-
+        //userRole to POLYCYHOLDER if not provided
         // Default role to POLICYHOLDER if not provided
         const userRole = role || 'POLICYHOLDER';
 
@@ -21,16 +21,16 @@ exports.register = (req, res) => {
         res.status(500).json({ error: "Username likely already exists" });
     }
 };
-
+// Login controller - Authenticates user using username & password
 exports.login = (req, res) => {
     const { username, password } = req.body;
-
+// Extract username and password from request body
     const user = UserModel.findByUsername(username);
     if (!user) return res.status(400).json({ error: "Invalid credentials" });
-
+ // If user not found -> return invalid credentials
     const isMatch = bcrypt.compareSync(password, user.password);
     if (!isMatch) return res.status(400).json({ error: "Invalid credentials" });
-
+ // If password doesn't match -> return invalid credentials
     // Create JWT Token
     const token = jwt.sign(
         { id: user.id, role: user.role, username: user.username },
