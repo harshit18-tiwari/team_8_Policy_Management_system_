@@ -12,7 +12,8 @@ function App() {
     const [view, setView] = useState('home'); // Simple routing state
     const [selectedProduct, setSelectedProduct] = useState(null); // For passing data between views
 
-    // Check for token on load
+     // Runs once when the app loads
+    // If user already logged in earlier, restore session from localStorage
     useEffect(() => {
         const token = localStorage.getItem('token');
         const role = localStorage.getItem('role');

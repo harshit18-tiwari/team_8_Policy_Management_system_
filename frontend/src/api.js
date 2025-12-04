@@ -1,23 +1,23 @@
 const API_URL = 'http://localhost:5000/api';
 
-// Helper to attach token automatically
+// Reusable request helper that automatically attaches JWT token
 export const fetchWithAuth = async (endpoint, options = {}) => {
     const token = localStorage.getItem('token');
 
+    // Build final headers object
     const headers = {
-        ...options.headers,
-        'Authorization': `Bearer ${token}`
+        ...(options.headers || {}),
+        ...(token && { Authorization: `Bearer ${token}` })
     };
 
-    // If body is JSON, add content-type (unless it's FormData)
+    // Only set JSON header when body is not FormData
     if (!(options.body instanceof FormData)) {
         headers['Content-Type'] = 'application/json';
     }
 
-    const res = await fetch(`${API_URL}${endpoint}`, {
+    // Execute the request
+    return await fetch(`${API_URL}${endpoint}`, {
         ...options,
         headers
     });
-
-    return res;
 };
