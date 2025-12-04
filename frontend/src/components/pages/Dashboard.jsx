@@ -41,9 +41,15 @@ function Dashboard({ user, setView }) {
                     {policies.map(p => (
                         <div key={p.id} className={`card ${p.status}`}>
                             <h3>{p.product_name}</h3>
-                            <p>Status: <strong>{p.status}</strong></p>
-                            <p>Policy #: {p.policy_number || 'N/A'}</p>
-                            <p>Premium: ${p.premium_amount}</p>
+                            {/* Display current status of the policy */}
+                                <p>Status: <strong>{p.status}</strong></p>
+                                
+                                {/* Show policy number, if missing display "N/A" */}
+                                <p>Policy #: {p.policy_number || 'N/A'}</p>
+                                
+                                {/* Display premium amount for this policy */}
+                                <p>Premium: ${p.premium_amount}</p>
+
 
                             {p.status === 'PENDING_PAYMENT' && (
                                 <button onClick={() => simulatePayment(p.id)}>Pay Now (Simulate)</button>
